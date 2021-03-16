@@ -1,6 +1,8 @@
 package com.example.smartcitiesanomalies
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -18,12 +20,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration= AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+       val botao = findViewById<Button>(R.id.ir_atividade2)
+        botao.setOnClickListener {
+            val intent = Intent(this , NotasActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
