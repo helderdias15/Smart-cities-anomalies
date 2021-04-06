@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-       val botao = findViewById<Button>(R.id.ir_atividade2)
+       /*val botao = findViewById<Button>(R.id.ir_atividade2)
         botao.setOnClickListener {
             val intent = Intent(this , NotasActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 }
