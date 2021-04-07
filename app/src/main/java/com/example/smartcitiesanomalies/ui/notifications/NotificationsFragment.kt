@@ -1,36 +1,28 @@
 package com.example.smartcitiesanomalies.ui.notifications
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 //import androidx.lifecycle.ViewModelProviders
 import com.example.smartcitiesanomalies.AddNote
-import com.example.smartcitiesanomalies.NotasActivity
 import com.example.smartcitiesanomalies.R
 import com.example.smartcitiesanomalies.adapter.NotasAdapter
 import com.example.smartcitiesanomalies.entidades.Notas
-import com.example.smartcitiesanomalies.teste
-import com.example.smartcitiesanomalies.ui.home.HomeViewModel
 import com.example.smartcitiesanomalies.viewModel.NotasViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import ipvc.estg.incidentes.listeners.RecyclerItemTouchHelper
 
 
+class NotificationsFragment : Fragment(), NotasAdapter.NotasAdapterListener, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener  {
 
-
-class NotificationsFragment : Fragment() {
 
     private val newWordActivityRequestCode = 1
     private lateinit var notasViewModel: NotasViewModel
@@ -46,6 +38,7 @@ class NotificationsFragment : Fragment() {
        // notificationsViewModel =
         //    ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_notifications, container, false)
+        //val root2 = inflater.inflate(R.layout.recyclerview_nota, container, false)
       //  notificationsViewModel.text.observe(this, Observer {
        //     textView.text = it
        // })
@@ -68,17 +61,38 @@ class NotificationsFragment : Fragment() {
             startActivity(intent)
         }
 
-       val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview_notas)
-        val adapter = context?.let { NotasAdapter(it) }
-        recyclerView.adapter = adapter!!
+        val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview_notas)
+        //var adapter = context?.let { NotasAdapter(it) }
+
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         notasViewModel = ViewModelProvider(this).get(NotasViewModel::class.java)
         notasViewModel.allNotas.observe(this , Observer{ notas ->
             Log.e("notas" , notas.toString())
-            notas?.let { adapter.setNotas(it)}
+            val notesList = notas as MutableList<Notas>
+            val adapter = context?.let { NotasAdapter(notesList, this, it) }
+            recyclerView.adapter = adapter!!
         })
 
+
+
+        /*recyclerView.findContainingViewHolder(root2){
+            val paper = root2.findViewById<ImageView>(R.id.image)
+        }*/
+
+        /*class ViewHolder(root2: View) : RecyclerView.ViewHolder(root2) {
+            private var paper  = root2.findViewById<ImageView>(R.id.botaoupdate)
+
+
+
+        fun veractivity (event: Lifecycle.Event) {
+            paper.setOnClickListener {
+                val intent = Intent( activity, AddNote::class.java)
+                startActivity(intent)
+            }
+
+        }
+    }*/
 
 
 
@@ -156,6 +170,24 @@ class NotificationsFragment : Fragment() {
 
 
     }
-    
+
+     /*override fun notasDetele(position: Int){
+        notasViewModel.allNotas.value?.get(position)?.id?.let{
+            notasViewModel.deleteNota(it)
+        }
+    }*/
+
+    override fun onNoteSelected(nota: Notas?) {
+       Log.e("nota", nota!!.id.toString())
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    class ClickListener {
+        fun onClick() {}
+    }
+
 
 }
