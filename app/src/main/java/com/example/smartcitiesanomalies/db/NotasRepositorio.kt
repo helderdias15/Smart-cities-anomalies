@@ -15,8 +15,8 @@ class NotasRepositorio(private val notasDao: NotasDao){
         notasDao.deleteNota(id)
     }
 
-   /* suspend fun updateNota ( notas: Notas){
+    suspend fun updateNota ( notas: Notas){
         notasDao.updateNota(notas)
-    }*/
+    }
 
 }

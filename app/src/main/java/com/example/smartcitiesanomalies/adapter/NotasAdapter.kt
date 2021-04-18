@@ -18,17 +18,16 @@ class NotasAdapter(notesList: MutableList<Notas>, listener: NotasAdapterListener
     var context : Context = context
 
     inner class MyViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView
+        var titulo: TextView
         var viewBackground: RelativeLayout
         var viewForeground: RelativeLayout
-        var date: TextView
-        var time: TextView
+        var descricao: TextView
+
 
         init {
 
-            title = view.findViewById(R.id.title)
-            date = view.findViewById(R.id.date)
-            time = view.findViewById(R.id.time)
+            titulo = view.findViewById(R.id.titulo)
+            descricao = view.findViewById(R.id.descricao)
             viewBackground = view.findViewById(R.id.view_background)
             viewForeground = view.findViewById(R.id.view_foreground)
 
@@ -48,9 +47,9 @@ class NotasAdapter(notesList: MutableList<Notas>, listener: NotasAdapterListener
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val nota = notesList[position]
-        holder.title.text = nota.titulo
-        holder.date.text = nota.titulo
-        holder.time.text = nota.titulo
+        holder.titulo.text = nota.titulo
+        holder.descricao.text = nota.descricao
+
     }
 
 

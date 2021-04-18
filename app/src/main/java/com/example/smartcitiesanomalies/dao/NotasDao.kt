@@ -19,5 +19,5 @@ interface NotasDao {
     suspend fun deleteNota(id: Int)
 
     @Update
-    suspend fun updateNotas(notas: Notas)
+    suspend fun updateNota(notas: Notas)
 }
