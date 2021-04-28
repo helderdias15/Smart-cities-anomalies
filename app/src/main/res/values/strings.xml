@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SmartCities</string>
+    <string name="title_activity_mapa">Map</string>
+    <string name="login_p">login_p</string>
+    <string name="login_shared">login_shared</string>
+    <string name="nome">nome</string>
+    <string name="id">id</string>
+
+</resources>
