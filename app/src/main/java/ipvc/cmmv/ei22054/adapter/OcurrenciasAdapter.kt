@@ -9,7 +9,7 @@ import ipvc.cmmv.ei22054.R
 import ipvc.cmmv.ei22054.api.Ocurrencia
 import ipvc.cmmv.ei22054.api.User
 
-/*class OcurrenciasAdapter(val ocurrencia: List<Ocurrencia>): RecyclerView.Adapter<OcurrenciaViewHolder>(){
+class OcurrenciasAdapter(val ocurrencia: List<Ocurrencia>): RecyclerView.Adapter<OcurrenciaViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OcurrenciaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_ocurrencias , parent ,false)
         return OcurrenciaViewHolder(view)
@@ -20,7 +20,7 @@ import ipvc.cmmv.ei22054.api.User
     }
 
     override fun onBindViewHolder(holder: OcurrenciaViewHolder, position: Int) {
-       // return holder.bind(ocurrencia[position])
+        return holder.bind(ocurrencia[position])
     }
 }
 
@@ -30,8 +30,8 @@ class OcurrenciaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
 
 
-   /* fun bind(ocurrencia: Ocurrencia){
-        name.text = user.nome
-        pass.text = user.pass*/
+    fun bind(ocurrencia: Ocurrencia){
+        titulo.text = ocurrencia.titulo
+        descricao.text = ocurrencia.descricao
     }
-}*/
+}

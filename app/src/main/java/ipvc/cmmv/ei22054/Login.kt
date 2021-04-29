@@ -28,7 +28,7 @@ class Login : AppCompatActivity() {
 
         if (sharedPref != null){
             if(sharedPref.all[getString(R.string.login_shared)]==true){
-                var intent = Intent(this, Mapa::class.java)
+                var intent = Intent(this, menuLogado::class.java)
                 startActivity(intent)
             }
         }

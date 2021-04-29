@@ -9,7 +9,7 @@ interface EndPoints {
     fun VerificarUtilizador(@Field("nome")nome:String?, @Field("pass")pass:String?): Call<List<User>>
 
     @GET("myslim/ocurrencia/{id}")
-    fun getOcurenciasById(@Path("id_utilizador") id_utilizador: Int): Call<List<Ocurrencia>>
+    fun getOcurenciasById(@Path("id") id: Int): Call<List<Ocurrencia>>
 
     @GET("myslim/ocurrencia")
     fun getAllOcurencias(): Call<List<Ocurrencia>>

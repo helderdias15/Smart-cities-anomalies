@@ -95,7 +95,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         })
 
     }
-    fun logout(view:View){
+    /*fun logout(view:View){
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.login_p), Context.MODE_PRIVATE
         )
@@ -109,6 +109,6 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         val intent = Intent(this, Login::class.java)
 
         startActivity(intent)
-    }
+    }*/
 
 }

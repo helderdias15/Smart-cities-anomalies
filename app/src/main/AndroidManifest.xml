@@ -32,14 +32,25 @@
 
         <activity
             android:name=".Mapa"
-            android:label="@string/title_activity_mapa"></activity>
-        <activity android:name=".menuLogado" />
+
+            android:label="@string/title_activity_mapa">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".menuLogado" />
+        </activity>
+        <activity android:name=".menuLogado">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" /></activity>
         <activity android:name=".AddNote">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Notas_act" />
         </activity>
-        <activity android:name=".Login" />
+        <activity android:name=".Login">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" /></activity>
         <activity android:name=".Notas_act">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
