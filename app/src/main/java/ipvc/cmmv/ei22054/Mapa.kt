@@ -49,8 +49,8 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(41.6873737, -8.8372531)
-        val zoomLevel = 8f;
+        val sydney = LatLng(39.60199, -8.40924)
+        val zoomLevel = 6f;
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
 
@@ -95,20 +95,6 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         })
 
     }
-    /*fun logout(view:View){
-        val sharedPref: SharedPreferences = getSharedPreferences(
-            getString(R.string.login_p), Context.MODE_PRIVATE
-        )
-        with(sharedPref.edit()) {
-            putBoolean(getString(R.string.login_shared), false)
-            putString(getString(R.string.nome), "")
-            putInt(getString(R.string.id), 0)
-            commit()
-        }
 
-        val intent = Intent(this, Login::class.java)
-
-        startActivity(intent)
-    }*/
 
 }

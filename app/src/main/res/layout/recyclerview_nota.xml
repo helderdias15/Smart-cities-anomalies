@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/settings_icon"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/dra_elim"
             android:contentDescription="Def"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -39,18 +39,7 @@
             android:layout_centerVertical="true"
             android:layout_height="70dp"/>
 
-        <ImageView
-            android:id="@+id/image"
-            android:padding="5dp"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:layout_marginLeft="10dp"
-            tools:ignore="VectorDrawableCompat" />
+
 
 
         <TextView
