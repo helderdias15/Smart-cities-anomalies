@@ -21,15 +21,24 @@ import ipvc.cmmv.ei22054.api.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.core.app.ComponentActivity.ExtraData
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+
 
 class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var ocurencia: List<Ocurrencia>
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mapa)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -46,13 +55,23 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.isMyLocationEnabled = true
+        googleMap.uiSettings.isZoomControlsEnabled = true
+        googleMap.uiSettings.isMyLocationButtonEnabled = true
+        googleMap.uiSettings.isMapToolbarEnabled = false
         mMap = googleMap
+        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+            if(location != null){
+                mMap.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(location.latitude,location.longitude),
+                        15f
+                    )
+                )
+            }
+        }
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(39.60199, -8.40924)
-        val zoomLevel = 6f;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.getAllOcurencias()
@@ -75,13 +94,15 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
                     ocurencia = response.body()!!
 
                     for (occurrence in ocurencia) {
+
                         position = LatLng(occurrence.latitude, occurrence.longitude)
 
                         if (occurrence.id_utilizador == id) {
                             mMap.addMarker(MarkerOptions().position(position).title(occurrence.titulo + " - " + occurrence.descricao).icon(
                                 BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)))
                         } else {
-                            mMap.addMarker(MarkerOptions().position(position).title(occurrence.titulo + " - " + occurrence.descricao).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
+                            mMap.addMarker(MarkerOptions().position(position).title(occurrence.titulo + " - " + occurrence.descricao).icon(
+                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
 
                         }
 

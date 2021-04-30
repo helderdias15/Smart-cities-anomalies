@@ -13,4 +13,9 @@ interface EndPoints {
 
     @GET("myslim/ocurrencia")
     fun getAllOcurencias(): Call<List<Ocurrencia>>
+
+    @FormUrlEncoded
+    @POST("myslim/ocurrencia_insert")
+    fun InsereOcurrencia(@Field("titulo")titulo:String?, @Field("descricao")descricao:String?, @Field("imagem")imagem:String? , @Field("latitude")latitude:Double? , @Field("longitude")longitude:Double?, @Field("id_utilizador")id_utilizador:Int? ): Call<Ocurrencia>
+
 }
