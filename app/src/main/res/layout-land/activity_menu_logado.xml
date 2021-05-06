@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menuLogado">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_ocurrencias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="65dp"
+        android:layout_centerHorizontal="true"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_ocurrencia"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/dra_add"
+        app:layout_anchor="@id/recyclerview_ocurrencias"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginRight="10dp" />
+
+    <Button
+        android:id="@+id/bt_mapa"
+        android:layout_width="386dp"
+        android:layout_height="63dp"
+        android:layout_gravity="bottom|right"
+        android:text="@string/map"
+        app:layout_anchorGravity="bottom|right|end" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="374dp"
+        android:layout_height="63dp"
+        android:layout_alignLeft="@+id/recyclerview_notas"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|left"
+        android:layout_marginTop="0dp"
+        android:onClick="logout"
+        android:text="@string/logout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout></RelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartCities</string>
+    <string name="notas">Notas</string>
+    <string name="login">Login</string>
+    <string name="apply">Aplicar</string>
+    <string name="camp_obri">Campo Obrigatorio</string>
+    <string name="confirm">Confirmar</string>
+    <string name="desativar">Desativar</string>
+    <string name="fail_login">Login Falhou</string>
+    <string name="ins_des">Insirer Descrição</string>
+    <string name="ins_tit">Inserir Titulo</string>
+    <string name="km">KM</string>
+    <string name="km_filter">Filtro de KM</string>
+    <string name="logout">Logout</string>
+    <string name="map">Mapa</string>
+    <string name="name">Nome</string>
+    <string name="nt_dl">Nota Apagada</string>
+    <string name="nt_sav">Nota Guardada</string>
+    <string name="pass">Password</string>
+    <string name="save">Confirmar</string>
+    <string name="welcome">Bem-Vindo</string>
+    <string name="tit_vazio">Titulo Vazio</string>
+    <string name="ocorr_del">Ocorrencia Apagada</string>
+    <string name="ocorr_sav">Ocorrencia Guardada</string>
+</resources>
