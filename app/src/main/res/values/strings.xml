@@ -1,9 +1,42 @@
 <resources>
     <string name="app_name">SmartCities</string>
-    <string name="title_activity_mapa">Map</string>
-    <string name="login_p">login_p</string>
-    <string name="login_shared">login_shared</string>
-    <string name="nome">nome</string>
-    <string name="id">id</string>
+    <string name="title_activity_mapa" translatable="false">Map</string>
+    <string name="login_p" translatable="false">login_p</string>
+    <string name="login_shared" translatable="false">login_shared</string>
+    <string name="nome" translatable="false">nome</string>
+    <string name="id" translatable="false">id</string>
+    <string name="notas">Notes</string>
+    <string name="login">Login</string>
+    <string name="nt_dl">Note deleted</string>
+    <string name="nt_sav">Note Saved</string>
+    <string name="ins_tit">Insert Title</string>
+    <string name="ins_des">Insert Description</string>
+    <string name="save">Save</string>
+    <string name="camp_obri">Required Field</string>
+    <string name="name">Name</string>
+    <string name="pass">Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="fail_login">Login Failed</string>
+    <string name="welcome">Welcome</string>
+    <string name="logout">Logout</string>
+    <string name="map">Map</string>
+    <string name="km">KM</string>
+    <string name="apply">Apply</string>
+    <string name="desativar">Deactivate</string>
+    <string name="km_filter">KM Filter</string>
+    <string name="tit_vazio">Empty Title</string>
+    <string name="ocorr_del">Occurrence Deleted</string>
+    <string name="ocorr_sav">Occurrence Saved</string>
+
+
+
+
+
+
+
+
+
+
+
 
 </resources>

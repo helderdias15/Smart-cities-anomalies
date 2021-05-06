@@ -47,9 +47,10 @@ class Login : AppCompatActivity() {
             )
             call.enqueue(object : Callback<List<User>> {
                 override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    Toast.makeText(this@Login, "${t.message}", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@Login, "${t.message}", Toast.LENGTH_SHORT).show()
                     val enter = "foi para aqui "
                     Log.e("suc", enter.toString())
+                    Toast.makeText(this@Login, R.string.fail_login, Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
@@ -73,6 +74,8 @@ class Login : AppCompatActivity() {
                             }
                         }
                         startActivity(intent)
+                        Toast.makeText(this@Login, R.string.welcome, Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                 }
             })

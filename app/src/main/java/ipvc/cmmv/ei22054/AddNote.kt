@@ -52,9 +52,10 @@ class AddNote : AppCompatActivity() {
                     Log.e("nota",  nota.toString())
                     notasViewModel.insert(nota)
                     finish()
+                    Toast.makeText(this, R.string.nt_sav, Toast.LENGTH_LONG).show()
                 }else {
-                    tituloText.error = "campo obrigatorio"
-                    Toast.makeText(this,"titulo vazio", Toast.LENGTH_LONG).show()
+                    tituloText.error
+                    Toast.makeText(this,R.string.tit_vazio, Toast.LENGTH_LONG).show()
                 }
             }else if(action == "view"){
                 if (!tituloText.text.isEmpty()){
@@ -63,9 +64,10 @@ class AddNote : AppCompatActivity() {
                     notasViewModel = ViewModelProvider(this).get(NotasViewModel::class.java)
                     notasViewModel.updateNota(nota)
                     finish()
+                    Toast.makeText(this, R.string.nt_sav, Toast.LENGTH_LONG).show()
                 }else{
-                    tituloText.error = "campo obrigatorio"
-                    Toast.makeText(this,"titulo vazio", Toast.LENGTH_LONG).show()
+                    tituloText.error
+                    Toast.makeText(this, R.string.tit_vazio, Toast.LENGTH_LONG).show()
                 }
 
             }

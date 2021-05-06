@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:hint="inserir titulo"
+        android:hint="@string/ins_tit"
         android:inputType="textAutoComplete"
         android:textSize="18sp" />
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:hint="inserir descricao"
+        android:hint="@string/ins_des"
         android:inputType="textAutoComplete"
         android:textSize="18sp" />
 
@@ -27,6 +27,6 @@
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

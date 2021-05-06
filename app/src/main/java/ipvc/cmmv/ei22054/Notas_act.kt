@@ -94,7 +94,7 @@ class Notas_act : AppCompatActivity(), NotasAdapter.NotasAdapterListener {
             Log.e("nota", note!!.id.toString())
             notViewModel = ViewModelProvider(this).get(NotasViewModel::class.java)
             notViewModel!!.deleteNota(note.id!!)
-            Toast.makeText(this,"Nota apagada", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,R.string.nt_dl, Toast.LENGTH_LONG).show()
         }
 
     }

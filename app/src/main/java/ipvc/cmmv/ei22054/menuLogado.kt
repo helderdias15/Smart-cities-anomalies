@@ -1,6 +1,7 @@
 package ipvc.cmmv.ei22054
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.cmmv.ei22054.adapter.OcurrenciasAdapter
 import ipvc.cmmv.ei22054.api.EndPoints
@@ -19,8 +22,20 @@ import kotlinx.android.synthetic.main.activity_menu_logado.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.recyclerview.widget.ItemTouchHelper
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.core.app.ComponentActivity.ExtraData
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.getSystemService
 
-class menuLogado : AppCompatActivity() {
+
+
+class menuLogado : AppCompatActivity(), OcurrenciasAdapter.OcurenciaAdapterListener {
+
+    var mAdapter : OcurrenciasAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +44,7 @@ class menuLogado : AppCompatActivity() {
         val add_ocurrencia = findViewById<FloatingActionButton>(R.id.fab_ocurrencia)
         add_ocurrencia.setOnClickListener{
             val intent = Intent(this, AddOcurrencia::class.java)
+            intent.putExtra("action","create")
             startActivity(intent)
         }
 
@@ -55,12 +71,43 @@ class menuLogado : AppCompatActivity() {
             override fun onResponse(call: Call<List<Ocurrencia>>, response: Response<List<Ocurrencia>>) {
                 if (response.isSuccessful){
                     recyclerview_ocurrencias.apply {
-
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@menuLogado)
-                        adapter = OcurrenciasAdapter(response.body()!!)
+                        adapter = OcurrenciasAdapter((response.body() as MutableList<Ocurrencia>?)!!,this@menuLogado,this@menuLogado)
+                        mAdapter = adapter as OcurrenciasAdapter
+                    }
+
+                    val touchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                            private val background = ColorDrawable(Color.BLACK)
+
+                            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                                return false
+                            }
+
+                            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                                Toast.makeText(this@menuLogado, R.string.ocorr_del, Toast.LENGTH_SHORT).show()
+
+                                val item = mAdapter!!.getItem(viewHolder.adapterPosition)
+                                val request = ServiceBuilder.buildService(EndPoints::class.java)
+                                val call = request.EliminaOcorrencia(item.id)
+
+                                call.enqueue(object : Callback<Ocurrencia> {
+                                    override fun onResponse(call: Call<Ocurrencia>, response: Response<Ocurrencia>) {
+                                        mAdapter!!.removeItem(viewHolder.adapterPosition)
+
+                                    }
+                                    override fun onFailure(call: Call<Ocurrencia>, t: Throwable) {
+                                        mAdapter!!.notifyDataSetChanged()
+                                    }
+                                })
+
+
+
+                            }
 
                     }
+                    val itemTouchHelper = ItemTouchHelper(touchHelperCallback)
+                    itemTouchHelper.attachToRecyclerView(recyclerview_ocurrencias)
                 }
             }
 
@@ -86,5 +133,19 @@ class menuLogado : AppCompatActivity() {
         val intent = Intent(this, Login::class.java)
 
         startActivity(intent)
+        finish()
+    }
+
+
+
+    override fun onOcurenciaSelected(ocurrencia: Ocurrencia?) {
+        Log.e("nota", ocurrencia!!.id.toString())
+        val intent = Intent(this, AddOcurrencia::class.java);
+        intent.putExtra("id",ocurrencia.id)
+        intent.putExtra("titulo",ocurrencia.titulo)
+        intent.putExtra("descricao",ocurrencia.descricao)
+        intent.putExtra("action","view")
+        startActivity(intent);
     }
 }
+

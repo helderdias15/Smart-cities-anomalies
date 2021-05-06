@@ -15,5 +15,38 @@
     android:layout_height="match_parent"
     tools:context=".Mapa" />
 
+    <TextView
+        android:id="@+id/fil_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/km_filter"/>
+
+        <EditText
+            android:id="@+id/edit_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_below="@+id/fil_titulo"
+        />
+    <TextView
+        android:id="@+id/km"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fil_titulo"
+        android:layout_marginTop="20dp"
+        android:text="@string/km"
+        android:layout_toRightOf="@+id/edit_n" />
+
+    <Button
+        android:id="@+id/ativar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/apply"
+        android:layout_below="@+id/edit_n"/>
+    <Button
+        android:id="@+id/desativar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desativar"
+        android:layout_below="@+id/ativar"/>
 
 </RelativeLayout>

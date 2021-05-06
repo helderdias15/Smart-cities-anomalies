@@ -35,22 +35,22 @@
 
     <Button
         android:id="@+id/bt_mapa"
-        android:layout_width="260dp"
+        android:layout_width="199dp"
         android:layout_height="63dp"
         android:layout_gravity="bottom|right"
-        app:layout_anchorGravity="bottom|right|end"
-        android:text="Ver Mapa" />
+        android:text="@string/map"
+        app:layout_anchorGravity="bottom|right|end" />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="260dp"
+        android:layout_width="199dp"
         android:layout_height="63dp"
-        android:layout_gravity="bottom|left"
         android:layout_alignLeft="@+id/recyclerview_notas"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|left"
         android:layout_marginTop="0dp"
         android:onClick="logout"
-        android:text="Logout" />
+        android:text="@string/logout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout></RelativeLayout>
